@@ -1,0 +1,7 @@
+#Root {
+    width: 30%;
+}
+
+#Spawn_Input{
+    min-width: 300px;
+}
