@@ -30,19 +30,13 @@ public class BallSpawner : Spawner
 
         for (int i = 0; i < numSpawn; i++)
         {
-            this.spawnedObjects.Add(this.SpawnBall());
+            this.Spawn();
         }
 
     }
 
     private void OnClearEvent()
     {
-        for (int i = 0; i < this.spawnedObjects.Count; i++)
-        {
-            GameObject.Destroy(this.spawnedObjects[i]);
-        }
-
-        this.spawnedObjects.Clear();
-
+        this.ClearSpawns();
     }
 }

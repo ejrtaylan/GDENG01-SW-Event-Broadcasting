@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject CubePrefab;
-    [SerializeField] private GameObject BallPrefab;
+    [SerializeField] protected GameObject Prefab;
     [SerializeField] protected List<GameObject> spawnedObjects;
 
     [SerializeField] private float spawnLocVariance = 6.0f;
@@ -17,8 +16,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.CubePrefab.SetActive(false);
-        this.BallPrefab.SetActive(false);
+        this.Prefab.SetActive(false);
 
         // Remove once proper implementation exists
         this.StartCoroutine(this.RepeatEvery(1));
@@ -31,12 +29,11 @@ public class Spawner : MonoBehaviour
     }
 
     // Remove once proper implementation exists
-    private IEnumerator RepeatEvery(float seconds){
+    protected IEnumerator RepeatEvery(float seconds){
         yield return new WaitForSeconds(seconds);
 
         for(int i = 0; i < spawnCount; i++){
-            this.SpawnCube();
-            this.SpawnBall();
+            this.Spawn();
         }
 
         yield return new WaitForSeconds(2);
@@ -46,41 +43,30 @@ public class Spawner : MonoBehaviour
         this.StartCoroutine(this.RepeatEvery(seconds));
     }
 
-    private void SpawnCube(){
+    protected void Spawn(){
         Vector3 spawnLoc = this.transform.localPosition;
 
         spawnLoc.x += Random.Range(-this.spawnLocVariance, spawnLocVariance);
         spawnLoc.y += Random.Range(-this.spawnLocHeightVariance, spawnLocHeightVariance);
         spawnLoc.z += Random.Range(-this.spawnLocVariance, spawnLocVariance);
 
-        GameObject obj = this.SpawnObject(this.CubePrefab, this.transform, spawnLoc);
+        GameObject obj = this.SpawnObject(this.Prefab, this.transform, spawnLoc);
         this.spawnedObjects.Add(obj);
     }
 
-    protected GameObject SpawnBall(){
-        Vector3 spawnLoc = this.transform.localPosition;
-
-        spawnLoc.x += Random.Range(-this.spawnLocVariance, spawnLocVariance);
-        spawnLoc.y += Random.Range(-this.spawnLocHeightVariance, spawnLocHeightVariance);
-        spawnLoc.z += Random.Range(-this.spawnLocVariance, spawnLocVariance);
-
-        GameObject obj = this.SpawnObject(this.BallPrefab, this.transform, spawnLoc);
-        this.spawnedObjects.Add(obj);
-        return obj;
+    private GameObject SpawnObject(GameObject toSpawn, Transform parent, Vector3 localPos)
+    {
+        GameObject spawn = GameObject.Instantiate(toSpawn, parent);
+        spawn.SetActive(true);
+        spawn.transform.localPosition = localPos;
+        return spawn;
     }
 
-    private void ClearSpawns(){
+    protected void ClearSpawns(){
         for(int i = 0; i < this.spawnedObjects.Count; i++){
             GameObject.Destroy(this.spawnedObjects[i]);
         } 
 
         this.spawnedObjects.Clear();
-    }
-
-    private GameObject SpawnObject(GameObject toSpawn, Transform parent, Vector3 localPos){
-        GameObject spawn = GameObject.Instantiate(toSpawn, parent);
-        spawn.SetActive(true);
-        spawn.transform.localPosition = localPos;
-        return spawn;
     }
 }
