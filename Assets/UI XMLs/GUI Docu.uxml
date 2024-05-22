@@ -1,9 +1,0 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Styles/GUI%20Style.uss?fileID=7433441132597879392&amp;guid=cd991ed0b18be9f40a206d038bf4d036&amp;type=3#GUI Style" />
-    <engine:VisualElement name="Root">
-        <engine:TextField name="Spawn_Input" label="Spawn Count:" placeholder-text="enter number to spawn" />   
-        <engine:Button name="Spawn_Balls" text="Spawn Balls" />
-        <engine:Button name="Spawn_Cubes" text="Spawn Cubes" />
-        <engine:Button name="Clear_All" text="Clear All" />
-    </engine:VisualElement>
-</engine:UXML>
