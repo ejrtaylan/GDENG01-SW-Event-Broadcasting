@@ -7,6 +7,9 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private GameObject template;
     [SerializeField] private List<GameObject> objectList;
 
+    [SerializeField] private float spawnLocVariance = 6.0f;
+    [SerializeField] private float spawnLocHeightVariance = 2.0f;
+
     public const string NUM_SPAWNS = "NUM_SPAWNS";
 
     // Start is called before the first frame update
@@ -34,7 +37,13 @@ public class CubeSpawner : MonoBehaviour
 
         for (int i = 0; i < numSpawn; i++)
         {
-            GameObject instance = GameObject.Instantiate(this.template, this.transform);
+            Vector3 spawnLoc = this.transform.localPosition;
+
+            spawnLoc.x += Random.Range(-this.spawnLocVariance, spawnLocVariance);
+            spawnLoc.y += Random.Range(-this.spawnLocHeightVariance, spawnLocHeightVariance);
+            spawnLoc.z += Random.Range(-this.spawnLocVariance, spawnLocVariance);
+
+            GameObject instance = GameObject.Instantiate(this.template, spawnLoc, this.transform.rotation, this.transform);
             instance.SetActive(true);
             this.objectList.Add(instance);
         }
