@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject CubePrefab;
     [SerializeField] private GameObject BallPrefab;
-    [SerializeField] private List<GameObject> spawnedObjects;
+    [SerializeField] protected List<GameObject> spawnedObjects;
 
     [SerializeField] private float spawnLocVariance = 6.0f;
     [SerializeField] private float spawnLocHeightVariance = 2.0f;
@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
         this.spawnedObjects.Add(obj);
     }
 
-    private void SpawnBall(){
+    protected GameObject SpawnBall(){
         Vector3 spawnLoc = this.transform.localPosition;
 
         spawnLoc.x += Random.Range(-this.spawnLocVariance, spawnLocVariance);
@@ -66,6 +66,7 @@ public class Spawner : MonoBehaviour
 
         GameObject obj = this.SpawnObject(this.BallPrefab, this.transform, spawnLoc);
         this.spawnedObjects.Add(obj);
+        return obj;
     }
 
     private void ClearSpawns(){
