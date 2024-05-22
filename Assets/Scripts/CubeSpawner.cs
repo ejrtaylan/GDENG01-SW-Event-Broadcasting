@@ -7,7 +7,7 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private GameObject template;
     [SerializeField] private List<GameObject> objectList;
 
-    [SerializeField] private float spawnLocVariance = 6.0f;
+    [SerializeField] private float spawnLocVariance = 5.0f;
     [SerializeField] private float spawnLocHeightVariance = 2.0f;
 
     public const string NUM_SPAWNS = "NUM_SPAWNS";

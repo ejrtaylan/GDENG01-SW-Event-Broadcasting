@@ -22,7 +22,9 @@ public class UIScript : MonoBehaviour
 
     public void OnSpawnCubeClicked(){
         Debug.Log("Spawn Cubes Clicked");
-        EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_CUBES_CLICKED);
+        Parameters param = new Parameters();
+        param.PutExtra("NUM_SPAWNS", 2);
+        EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_CUBES_CLICKED, param);
     }
 
     public void OnSpawnBallClicked(){
@@ -32,8 +34,6 @@ public class UIScript : MonoBehaviour
     }
 
     public void OnClearAllClicked(){
-        Parameters param = new Parameters();
-        param.PutExtra("NUM_SPAWNS", 2);
         Debug.Log("Clear All Clicked");
         EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.CLEAR_ALL_CLICKED);
     }
