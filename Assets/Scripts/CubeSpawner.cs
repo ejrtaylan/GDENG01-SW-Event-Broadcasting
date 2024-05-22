@@ -33,6 +33,7 @@ public class CubeSpawner : MonoBehaviour
 
     private void OnSpawnEvent(Parameters param)
     {
+        Debug.Log("Spawn attempt");
         int numSpawn = param.GetIntExtra(NUM_SPAWNS, 1);
 
         for (int i = 0; i < numSpawn; i++)
