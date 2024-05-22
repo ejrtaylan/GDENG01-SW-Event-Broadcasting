@@ -50,6 +50,13 @@ public class EventNames {
 		public const string ON_FIRST_SCAN = "FIRST_TARGET_SCAN";
 		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
 	}
+
+	public class S23_ABT_Events
+	{
+		public const string ON_SPAWN_BALLS_CLICKED = "ON_SPAWN_BALLS_CLICKED";
+        public const string ON_SPAWN_CUBES_CLICKED = "ON_SPAWN_CUBES_CLICKED";
+        public const string CLEAR_ALL_CLICKED = "CLEAR_ALL_CLICKED";
+    }
 }
 
 
