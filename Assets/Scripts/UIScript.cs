@@ -31,7 +31,7 @@ public class UIScript : MonoBehaviour
     public void OnSpawnBallClicked(){
         Parameters param = new Parameters();
         param.PutExtra("NUM_SPAWNS", this.spawnCount);
-        EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_BALLS_CLICKED);
+        EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_BALLS_CLICKED, param);
 
     }
 
