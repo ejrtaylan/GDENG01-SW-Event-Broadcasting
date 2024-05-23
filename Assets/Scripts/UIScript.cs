@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using Palmmedia.ReportGenerator.Core.Common;
 
 public class UIScript : MonoBehaviour
 {
-    private int spawnCount;
+    private int spawnCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -21,26 +23,24 @@ public class UIScript : MonoBehaviour
     }
 
     public void OnSpawnCubeClicked(){
-        Debug.Log("Spawn Cubes Clicked");
         Parameters param = new Parameters();
-        param.PutExtra("NUM_SPAWNS", 2);
+        param.PutExtra("NUM_SPAWNS", this.spawnCount);
         EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_CUBES_CLICKED, param);
     }
 
     public void OnSpawnBallClicked(){
-        Debug.Log("Spawn Ball Clicked");
+        Parameters param = new Parameters();
+        param.PutExtra("NUM_SPAWNS", this.spawnCount);
         EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.ON_SPAWN_BALLS_CLICKED);
 
     }
 
     public void OnClearAllClicked(){
-        Debug.Log("Clear All Clicked");
         EventBroadcaster.Instance.PostEvent(EventNames.S23_ABT_Events.CLEAR_ALL_CLICKED);
     }
 
-    public void OnUpdateSpawnCount(){
-        // InputField this.GameObject().GetComponentInChildren(InputField, false);
-        this.spawnCount = 0;
-        Debug.Log("Value update");
+    public void OnUpdateSpawnCount(string input){
+        this.spawnCount = 1;
+        spawnCount = int.Parse(input);
     }
 }
