@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Palmmedia.ReportGenerator.Core.Common;
+using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
@@ -42,5 +43,9 @@ public class UIScript : MonoBehaviour
     public void OnUpdateSpawnCount(string input){
         this.spawnCount = 1;
         spawnCount = int.Parse(input);
+    }
+
+    public void OnBackToMain(){
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
